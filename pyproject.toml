@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "llm-knife"
+version = "0.1.0"
+description = "A library for working with various LLM models"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+packages = [{include = "llm_knife"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+boto3 = "^1.26.0"
+pyyaml = "^6.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0.0"
+pytest-cov = "^4.0.0"
+responses = "^0.23.0"
+moto = "^4.0.0"
+black = "^23.0.0"
+isort = "^5.12.0"
+flake8 = "^6.0.0"
+mypy = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+llm-knife = "llm_knife.cli:main"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "--cov=llm_knife --cov-report=term-missing" 
